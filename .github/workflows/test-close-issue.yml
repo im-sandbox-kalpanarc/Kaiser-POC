@@ -1,0 +1,33 @@
+name: test-close-issue
+
+on:
+  workflow_dispatch:
+    inputs:  
+      ORG_NAME:
+        description: 'Organization name'
+        required: true     
+      REPO_NAME:
+        description: 'Repository name'
+        required: true   
+      ISSUE_NUMBER:
+        description: 'Issue Number'
+        required: true
+jobs:
+  close-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3      
+
+      - name: closing issue  
+        id: closing_issue_body     
+        uses: ./provisioner/actions/close-issue
+        with: 
+          USER_PAT: ${{ secrets.ISSUE_OPS_TOKEN }}
+          ORG_NAME: ${{ inputs.ORG_NAME }}
+          REPO_NAME: ${{ inputs.REPO_NAME }}
+          ISSUE_NUMBER: ${{ inputs.ISSUE_NUMBER }}    
+
+      - name: Print Issue Status
+        run: |
+          echo "Issue Body: ${{ steps.closing_issue_body.outputs.RESPONSE }}"    

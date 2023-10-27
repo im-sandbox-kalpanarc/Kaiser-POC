@@ -1,0 +1,9 @@
+{
+    "inputs": {
+        "ORG_NAME": "test-phani-140",
+        "BILLING_EMAIL": "rajkumar@github.com",
+        "DEFAULT_REPOSITORY_PERMISSION": "write",
+        "MEMBERS_CAN_CREATE_REPOSITORIES": "true",
+        "MEMBERS_ALLOWED_REPOSITORY_CREATION_TYPE": "all"
+    }
+}

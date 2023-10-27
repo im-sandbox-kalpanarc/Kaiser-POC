@@ -1,0 +1,1 @@
+act -W .github/workflows/test-delete-repo.yml -e provisioner/tests/inputs/delete-repo.json --secret-file ./test.secrets

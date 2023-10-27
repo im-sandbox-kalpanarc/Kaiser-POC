@@ -1,0 +1,1 @@
+act -W .github/workflows/test-delete-organization.yml -e provisioner/tests/inputs/delete-organization.json --secret-file ./test.secrets

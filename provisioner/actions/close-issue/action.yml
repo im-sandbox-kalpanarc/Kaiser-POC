@@ -1,0 +1,30 @@
+name: Close Issue
+description: close the issue
+inputs:
+  USER_PAT:
+    description: 'Enter the Personal Access Token'
+    required: true
+  ORG_NAME:
+    description: 'Enter organization name'
+    required: true
+  REPO_NAME:
+    description: 'Repository name'
+    required: true   
+  ISSUE_NUMBER:
+    description: 'Issue Number'
+    required: true
+      
+outputs:
+  RESPONSE:
+    description: 'Response from GitHub API'
+    value: ${{ steps.close-issue.outputs.response }}
+
+runs:
+  using: composite
+  steps:
+    - name: close issue
+      id: close-issue
+      run: |
+          body=$(curl -X PATCH -H "Authorization: token ${{ inputs.USER_PAT }}" "https://api.github.com/repos/${{ inputs.ORG_NAME }}/${{ inputs.REPO_NAME }}/issues/${{ inputs.ISSUE_NUMBER }}" -d '{"state":"closed"}')         
+          echo "::set-output name=response::$body"
+      shell: bash 

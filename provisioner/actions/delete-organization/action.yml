@@ -1,0 +1,23 @@
+name: Delete Organization
+description: 'Delete an organization'
+
+inputs:
+  USER_PAT:
+    description: "Enter Personal access token of user"
+    required: true
+  ORG_NAME:
+    description: "Enter new organization name"
+
+runs:
+  using: composite
+  steps:
+    - name: Delete Organization
+      env:
+        GITHUB_TOKEN: ${{ inputs.USER_PAT }}
+      run: |
+        gh api \
+        --method DELETE \
+        -H "Accept: application/vnd.github+json" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        /orgs/${{ inputs.ORG_NAME}}
+      shell: bash

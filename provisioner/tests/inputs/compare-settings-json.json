@@ -1,0 +1,7 @@
+{
+    "inputs": {
+        "ENTITY_SETTINGS": "{\"repository\": {\"mandatory\": {\"is_template\": \"false\",\"default_branch\": \"main\",\"has_projects\": \"true\"}}}",
+        "ENTITY_TYPE": "repository",
+        "ISSUE_JSON": "{\"org_name\": \"im-sandbox-kalpanarc\", \"billing_email\": \"abc@gmail.com\", \"repository\": {\"repo_name\": \"p20\", \"has_wiki\": false, \"has_projects\": true, \"has_discussions\": true, \"assignees\": \"KalpanaReddyC,RajKumarInfomagnus\"}}"
+    }
+}

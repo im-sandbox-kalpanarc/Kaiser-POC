@@ -1,0 +1,1 @@
+act -W .github/workflows/test-update-org.yml -e provisioner/tests/inputs/update-organization.json --secret-file ./test.secrets

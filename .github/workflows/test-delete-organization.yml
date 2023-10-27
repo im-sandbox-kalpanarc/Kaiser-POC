@@ -1,0 +1,29 @@
+name: test-delete-organization
+
+on:
+  workflow_dispatch:
+    inputs:
+      ORG_NAME:
+        description: "Enter new organization name"
+        required: true
+jobs:
+  delete-organization:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install gh CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install gh
+
+      - name: Login to GitHub
+        run: |
+          gh auth login --with-token <<< "${{ secrets.ISSUE_OPS_TOKEN }}"
+          
+      - name: Delete Organization
+        uses: ./provisioner/actions/delete-organization
+        with:
+          USER_PAT: ${{ secrets.ISSUE_OPS_TOKEN }}
+          ORG_NAME: ${{ github.event.inputs.ORG_NAME }}

@@ -1,0 +1,33 @@
+name: test-compare-settings-json
+on:
+  workflow_dispatch:
+    inputs:
+      ENTITY_SETTINGS:
+        description: 'Enter the ENTITY_SETTINGS'
+        required: true
+      ISSUE_JSON:
+        description: 'Enter the ISSUE_JSON'
+        required: true
+      ENTITY_TYPE:
+        description: 'Enter the ENTITY_TYPE'
+        required: true
+jobs:
+  compare-settings-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+  
+      - name: Compare REPO_SETTINGS and issue_json
+        id: compare_repo_settings
+        env:
+          ISSUE_JSON: ${{ env.ISSUE_JSON }}
+        uses: ./provisioner/actions/compare-settings-json
+        with:
+          ENTITY_SETTINGS: ./provisioner/settings/defaults/enterprise-repo-settings.json
+          ISSUE_JSON: ${{ github.event.inputs.ISSUE_JSON }}
+          ENTITY_TYPE: repository
+
+      - name: Print status
+        run: |
+            echo "Compare settings value: ${{ steps.compare_repo_settings.outputs.STATUS }}"     
